@@ -1,0 +1,30 @@
+# =============================================================================
+#  Líneas para AGREGAR al final de /etc/fstab  (consignas 4.4 y 4.5)
+# =============================================================================
+#  /etc/fstab ("file systems table") dice qué particiones se montan solas
+#  al arrancar y en qué carpeta.
+#
+#  Columnas (separadas por espacios o tabs):
+#   1) QUÉ montar      → la partición. Usamos su UUID (identificador único).
+#   2) DÓNDE montarla  → la carpeta (punto de montaje).
+#   3) TIPO de FS      → ext4 (el formato nativo de Linux).
+#   4) OPCIONES        → defaults (lectura/escritura y lo habitual).
+#   5) DUMP            → 0 = no usar la vieja herramienta "dump" de backup.
+#   6) PASS (fsck)     → orden de chequeo al arrancar: 1 = la raíz /,
+#                        2 = las demás, 0 = no chequear.
+#
+#  Por qué UUID y no /dev/sdb1:
+#   El nombre /dev/sdb1 puede cambiar si se agrega o se mueve un disco
+#   (el que era sdb pasa a ser sdc). El UUID es propio de cada partición y no
+#   cambia nunca. Se obtiene con:   blkid /dev/sdb1 /dev/sdb2
+#
+#  ⚠️ Reemplazar los UUID de ejemplo por los que muestre blkid en SU VM.
+#  ⚠️ Probar SIEMPRE con "mount -a" antes de reiniciar: si fstab tiene un
+#     error, la VM puede no arrancar (entra en modo de emergencia).
+# =============================================================================
+
+# Partición de 3 GB (/dev/sdb1) → sitio web
+UUID=1111aaaa-2222-bbbb-3333-cccc4444dddd  /www_dir     ext4  defaults  0  2
+
+# Partición de 6 GB (/dev/sdb2) → backups
+UUID=5555eeee-6666-ffff-7777-0000aaaa1111  /backup_dir  ext4  defaults  0  2

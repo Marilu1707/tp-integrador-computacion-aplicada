@@ -1,0 +1,23 @@
+# =============================================================================
+#  Fragmento para AGREGAR en /etc/apache2/apache2.conf  (consigna 4.3)
+# =============================================================================
+#  Apache solo sirve carpetas que tengan permiso explícito en este archivo.
+#  De fábrica trae permisos para /var/www, pero NO para /www_dir.
+#  Si no agregamos este bloque, al entrar a la web aparece:
+#      "403 Forbidden — You don't have permission to access this resource"
+#
+#  Dónde pegarlo: debajo del bloque <Directory /var/www/> que ya existe.
+#  Para encontrarlo rápido:  grep -n "Directory /var/www" /etc/apache2/apache2.conf
+# =============================================================================
+
+<Directory /www_dir/>
+    # Indexes: si no hay index.php, muestra la lista de archivos de la carpeta.
+    # FollowSymLinks: permite seguir enlaces simbólicos (soft links).
+    Options Indexes FollowSymLinks
+
+    # No permite archivos .htaccess que cambien la configuración desde la carpeta.
+    AllowOverride None
+
+    # Permite el acceso a todos los visitantes (sin esto → 403 Forbidden).
+    Require all granted
+</Directory>
