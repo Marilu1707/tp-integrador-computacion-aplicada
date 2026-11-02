@@ -1,0 +1,26 @@
+# =============================================================================
+#  /etc/apt/sources.list — Repositorios de Debian 12 "Bookworm" (consigna 2.1)
+# =============================================================================
+#  APT descarga los paquetes de los repositorios que figuran acá.
+#  Para pasar a Debian 12 hay que reemplazar el nombre de la versión anterior
+#  (buster = Debian 10, bullseye = Debian 11) por "bookworm".
+#
+#  Formato de cada línea:
+#     deb  <URL del repositorio>  <versión>  <componentes...>
+#     - deb         → paquetes ya compilados (binarios)
+#     - bookworm    → nombre de la versión de Debian (12)
+#     - main        → software libre que cumple las reglas de Debian (DFSG)
+#     - contrib     → libre, pero depende de cosas que no lo son
+#     - non-free    → software no libre (drivers, codecs)
+#     - non-free-firmware → firmware no libre (nuevo en Debian 12)
+# =============================================================================
+
+# Repositorio principal de Debian 12.
+deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+
+# Parches de SEGURIDAD. Ojo: desde Debian 11 la ruta es "debian-security" y la
+# versión lleva el sufijo "-security" (en Debian 10 era "buster/updates").
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+
+# Actualizaciones que salen entre una versión puntual y la siguiente (12.1, 12.2...).
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
