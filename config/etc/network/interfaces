@@ -1,0 +1,44 @@
+# =============================================================================
+#  /etc/network/interfaces — Configuración de red del TPServer (consigna 3)
+# =============================================================================
+#  Este archivo le dice a Debian cómo levantar cada interfaz de red.
+#  La consigna pide IP ESTÁTICA y que estén los campos ADDRESS, NETMASK y
+#  GATEWAY.
+#
+#  ⚠️ LOS NÚMEROS SON DE EJEMPLO. Cada uno tiene que poner los de SU red:
+#     - En la máquina física (Windows): abrir cmd y escribir "ipconfig".
+#       Mirar "Dirección IPv4", "Máscara de subred" y "Puerta de enlace".
+#     - La VM tiene que estar en "Adaptador puente" en VirtualBox para quedar
+#       en la misma red que la máquina física.
+#     - Elegir para la VM una IP LIBRE del mismo rango (por ejemplo, si la PC
+#       es 192.168.0.23, usar algo alto como 192.168.0.150) y probar antes
+#       con "ping 192.168.0.150" desde la PC: si NO responde, está libre.
+#
+#  ⚠️ El nombre de la interfaz (enp0s3) puede variar: verlo con "ip a".
+# =============================================================================
+
+# Interfaz "loopback" (lo): la red interna de la propia máquina (127.0.0.1,
+# "localhost"). Siempre tiene que estar; no se toca.
+auto lo
+iface lo inet loopback
+
+# "allow-hotplug": levanta la interfaz cuando el sistema la detecta al arrancar.
+# (También se puede usar "auto enp0s3"; las dos funcionan para este TP.)
+allow-hotplug enp0s3
+
+# "inet static" = IPv4 con configuración MANUAL (lo contrario es "inet dhcp",
+# donde un servidor DHCP le asigna la IP sola).
+iface enp0s3 inet static
+    # ADDRESS: la IP fija de la VM dentro de la red.
+    address 192.168.0.150
+    # NETMASK: qué parte de la IP es "la red" y qué parte "el equipo".
+    # 255.255.255.0 = los primeros 3 números son la red (192.168.0.x).
+    netmask 255.255.255.0
+    # GATEWAY: el router por donde se sale a OTRAS redes (Internet).
+    # Suele ser el mismo que la "Puerta de enlace" de la PC física.
+    gateway 192.168.0.1
+
+# Después de guardar:
+#   systemctl restart networking     ← aplica los cambios
+#   ip a                             ← verificar que tenga la IP nueva
+#   ping -c 3 8.8.8.8                ← verificar salida a Internet
