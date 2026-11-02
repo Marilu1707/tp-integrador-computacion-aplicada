@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>TP Integrador — Computación Aplicada — Palermo Cloud</title>
+<!--
+  CÓMO TERMINAR EL INFORME
+  1) Guardar las capturas de la VM en la carpeta informe/capturas/ con los
+     nombres que figuran en cada recuadro rosa (01-grub.png, 02-passwd.png...).
+     Cada recuadro desaparece solo cuando su imagen existe.
+  2) Completar los nombres de los integrantes en la portada (buscar "Integrante").
+  3) Abrir este archivo con Chrome o Edge → Ctrl+P → Destino: "Guardar como PDF"
+     → Más opciones: activar "Gráficos de fondo" → Guardar como informe.pdf
+-->
+<style>
+@page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+:root{
+  --rosa:#c2185b; --rosa2:#e75480; --rosa-claro:#fde4ee; --rosa-fondo:#fff6fa;
+  --tinta:#2b2230; --gris:#6e6470; --linea:#f2c6d8;
+}
+*{box-sizing:border-box}
+body{font-family:"DejaVu Sans","Segoe UI",Arial,sans-serif;color:var(--tinta);font-size:10pt;line-height:1.5;margin:0;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1{font-size:15pt;color:var(--rosa);border-bottom:2px solid var(--rosa2);padding-bottom:1.5mm;margin:0 0 3.5mm;break-after:avoid}
+h2{font-size:11.5pt;color:var(--rosa);margin:5mm 0 1.5mm;break-after:avoid}
+p{margin:1.5mm 0}
+ul,ol{margin:1mm 0 2mm;padding-left:5.5mm}
+li{margin:.6mm 0}
+code{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.8pt;background:var(--rosa-claro);padding:0 1mm;border-radius:2px}
+pre{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.6pt;background:var(--rosa-fondo);border-left:3px solid var(--rosa2);
+  padding:2.5mm 3.5mm;margin:2mm 0;white-space:pre-wrap;break-inside:avoid;line-height:1.45}
+pre .c{color:#a0587a}
+table{border-collapse:collapse;width:100%;margin:2mm 0 3mm;font-size:9pt}
+th{background:var(--rosa);color:#fff;text-align:left;padding:1.4mm 2mm;font-weight:600}
+td{border-bottom:1px solid var(--linea);padding:1.2mm 2mm;vertical-align:top}
+tr{break-inside:avoid}
+.seccion{break-before:page}
+.nota{background:var(--rosa-fondo);border:1px solid var(--linea);border-radius:4px;padding:2.2mm 3.2mm;margin:2.5mm 0;break-inside:avoid;font-size:9.4pt}
+
+/* Portada */
+.portada{height:257mm;display:flex;flex-direction:column;justify-content:space-between;
+  background:linear-gradient(160deg,#fff 0%,#fff 55%,var(--rosa-claro) 100%);border-left:8px solid var(--rosa2);padding:16mm 12mm 12mm}
+.portada .uni{color:var(--gris);font-size:10pt;letter-spacing:.3px}
+.portada .tit{font-size:26pt;line-height:1.15;color:var(--rosa);font-weight:700;margin:0}
+.portada .sub{font-size:13pt;color:var(--tinta);margin-top:3mm}
+.portada .marca{display:inline-block;margin-top:7mm;background:var(--rosa);color:#fff;border-radius:20px;padding:1.5mm 5mm;font-size:10.5pt;font-weight:600}
+.portada table{width:auto;font-size:10pt}
+.portada td{border:none;padding:.7mm 4mm .7mm 0}
+.portada .lbl{color:var(--gris)}
+
+/* Índice */
+.indice li{display:flex;justify-content:space-between;border-bottom:1px dotted var(--linea);padding:1mm 0;list-style:none}
+.indice{padding-left:0}
+
+/* Capturas: el recuadro rosa se ve mientras falta la imagen */
+figure.cap{margin:2.5mm 0 3.5mm;break-inside:avoid}
+figure.cap img{max-width:100%;max-height:95mm;display:block;margin:0 auto;border:1px solid var(--linea);border-radius:3px}
+figure.cap .falta{border:2px dashed var(--rosa2);background:var(--rosa-fondo);border-radius:5px;padding:5mm;text-align:center;color:var(--rosa);font-size:9pt}
+figure.cap .falta b{display:block;font-family:"DejaVu Sans Mono",monospace;font-size:9pt;margin-top:1mm}
+figure.cap.ok .falta{display:none}
+figure.cap figcaption{text-align:center;color:var(--gris);font-size:8.6pt;margin-top:1.2mm}
+</style>
+</head>
+<body>
+
+<!-- ============================== PORTADA ============================== -->
+<div class="portada">
+  <div>
+    <div class="uni">Universidad de Palermo · Facultad de Ingeniería</div>
+    <p class="tit">Trabajo Práctico Integrador</p>
+    <div class="sub">Computación Aplicada — Servidor Debian 12 con web, base de datos y backups automáticos</div>
+    <div class="marca">🌸 Palermo Cloud</div>
+  </div>
+  <table>
+    <tr><td class="lbl">Integrantes</td><td>María Luján Massironi</td></tr>
+    <tr><td></td><td>Integrante 2 (completar)</td></tr>
+    <tr><td></td><td>Integrante 3 (completar)</td></tr>
+    <tr><td></td><td>Integrante 4 (completar)</td></tr>
+    <tr><td></td><td>Integrante 5 (completar)</td></tr>
+    <tr><td class="lbl">Profesor</td><td>Matías Chiesa</td></tr>
+    <tr><td class="lbl">Año</td><td>2026</td></tr>
+  </table>
+</div>
+
+<!-- ============================== ÍNDICE ============================== -->
+<div class="seccion">
+<h1>Índice</h1>
+<ol class="indice">
+  <li><span>1. Objetivos y escenario</span></li>
+  <li><span>2. Configuración del entorno</span></li>
+  <li><span>3. Servicios: Debian 12, SSH, Apache + PHP y MariaDB</span></li>
+  <li><span>4. Configuración de red</span></li>
+  <li><span>5. Almacenamiento</span></li>
+  <li><span>6. Backup automático</span></li>
+  <li><span>7. Entregables</span></li>
+  <li><span>8. Conclusión</span></li>
+  <li><span>9. Bibliografía</span></li>
+</ol>
+
+<h1 style="margin-top:9mm">1. Objetivos y escenario</h1>
+<p><b>Palermo Cloud</b> es una empresa ficticia de hosting. Un cliente nos entrega su servidor Debian sin la clave de administrador y nos pide dejarlo listo para producción. Ese pedido coincide con las consignas del trabajo práctico.</p>
+<h2>Objetivos</h2>
+<ul>
+  <li>Recuperar el acceso de root (clave <code>palermo</code>) e identificar el equipo como <b>TPServer</b>.</li>
+  <li>Actualizar el sistema a <b>Debian 12 "Bookworm"</b>.</li>
+  <li>Permitir el acceso remoto de root por <b>SSH con clave pública/privada</b>.</li>
+  <li>Publicar el sitio (<code>index.php</code> y <code>logo.png</code>) con <b>Apache + PHP</b> y cargar la base <code>db.sql</code> en <b>MariaDB</b>.</li>
+  <li>Configurar una <b>IP estática</b> en la misma red que la máquina física.</li>
+  <li>Agregar un <b>disco de 10 GB</b> con dos particiones montadas automáticamente: <code>/www_dir</code> (3 GB) y <code>/backup_dir</code> (6 GB).</li>
+  <li>Programar <b>backups automáticos</b> con un script propio y cron.</li>
+</ul>
+<div class="nota">El paso a paso completo, con cada comando comentado, está en la carpeta <code>docs/</code> del repositorio. Los archivos de configuración finales, explicados línea por línea, están en <code>config/</code>.</div>
+</div>
+
+<!-- ============================== 2. ENTORNO ============================== -->
+<div class="seccion">
+<h1>2. Configuración del entorno</h1>
+<h2>Importación de la máquina virtual</h2>
+<p>Unimos las partes <code>.rar</code> con WinRAR (extrayendo la primera parte) e importamos el archivo resultante en VirtualBox (<i>Archivo → Importar servicio virtualizado</i>). Antes del primer arranque configuramos la red en <b>Adaptador puente</b>, para que la VM quede en la misma red que la máquina física.</p>
+
+<h2>Blanqueo de la clave de root</h2>
+<p>Como la clave de root era desconocida, editamos el arranque desde GRUB (tecla <code>e</code>): reemplazamos <code>ro quiet</code> por <code>rw init=/bin/bash</code> y arrancamos con F10. Así obtuvimos una consola de root sin contraseña, con el disco en lectura-escritura.</p>
+<pre><span class="c"># En la consola que abre init=/bin/bash</span>
+passwd              <span class="c"># nueva clave: palermo</span>
+exec /sbin/init     <span class="c"># continúa con el arranque normal de Debian</span></pre>
+<figure class="cap"><img src="capturas/01-grub.png" alt=""><div class="falta">Pegar captura: línea de GRUB editada con <i>rw init=/bin/bash</i><b>capturas/01-grub.png</b></div><figcaption>Captura 1. Edición de los parámetros de arranque en GRUB.</figcaption></figure>
+<figure class="cap"><img src="capturas/02-passwd.png" alt=""><div class="falta">Pegar captura: <i>passwd</i> con "password updated successfully"<b>capturas/02-passwd.png</b></div><figcaption>Captura 2. Cambio de la clave de root.</figcaption></figure>
+
+<h2>Hostname</h2>
+<pre>hostnamectl set-hostname TPServer   <span class="c"># guarda el nombre en /etc/hostname</span>
+nano /etc/hosts                     <span class="c"># línea 127.0.1.1 → TPServer</span></pre>
+<figure class="cap"><img src="capturas/03-hostname.png" alt=""><div class="falta">Pegar captura: <i>hostname</i> mostrando TPServer<b>capturas/03-hostname.png</b></div><figcaption>Captura 3. Hostname configurado.</figcaption></figure>
+</div>
+
+<!-- ============================== 3. SERVICIOS ============================== -->
+<div class="seccion">
+<h1>3. Servicios</h1>
+<h2>3.1 Actualización a Debian 12</h2>
+<p>Primero actualizamos la versión instalada; después cambiamos el nombre de la versión por <code>bookworm</code> en <code>/etc/apt/sources.list</code> y completamos la actualización. Debian no permite saltear versiones, por lo que desde Debian 10 el proceso se hace dos veces (10 → 11 → 12).</p>
+<pre>apt update &amp;&amp; apt full-upgrade -y          <span class="c"># dejar al día la versión actual</span>
+sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list   <span class="c"># apuntar a Debian 12</span>
+apt update                                 <span class="c"># leer los repositorios nuevos</span>
+apt upgrade --without-new-pkgs -y          <span class="c"># primera pasada, conservadora</span>
+apt full-upgrade -y                        <span class="c"># completar la actualización</span>
+reboot</pre>
+<figure class="cap"><img src="capturas/04-debian12.png" alt=""><div class="falta">Pegar captura: <i>lsb_release -a</i> o <i>cat /etc/debian_version</i> en 12<b>capturas/04-debian12.png</b></div><figcaption>Captura 4. Sistema actualizado a Debian 12.</figcaption></figure>
+
+<h2>3.2 SSH con clave pública/privada</h2>
+<p>Instalamos <code>openssh-server</code> y autorizamos la clave pública disponible en el home de root. En <code>/etc/ssh/sshd_config.d/tp.conf</code> configuramos <code>PermitRootLogin prohibit-password</code>: root puede ingresar, pero <b>solo con clave</b>, nunca con contraseña.</p>
+<pre>mkdir -p /root/.ssh &amp;&amp; chmod 700 /root/.ssh
+cat /root/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys   <span class="c"># autorizar la clave pública</span>
+chmod 600 /root/.ssh/authorized_keys
+sshd -t &amp;&amp; systemctl restart ssh                      <span class="c"># validar y aplicar</span>
+
+<span class="c"># Desde la máquina física:</span>
+ssh -i id_rsa_tp root@IP-DE-LA-VM</pre>
+<figure class="cap"><img src="capturas/05-ssh.png" alt=""><div class="falta">Pegar captura: conexión <i>ssh -i</i> desde la PC física, sin pedir contraseña<b>capturas/05-ssh.png</b></div><figcaption>Captura 5. Acceso de root por SSH con clave desde la máquina física.</figcaption></figure>
+
+<h2>3.3 Apache con PHP</h2>
+<pre>apt install -y apache2 php libapache2-mod-php php-mysql</pre>
+<p><code>libapache2-mod-php</code> permite que Apache ejecute los archivos PHP; <code>php-mysql</code>, que PHP se conecte a MariaDB. Debian 12 instala PHP 8.2, que cumple el requisito de "7.3 o superior". Copiamos <code>index.php</code> y <code>logo.png</code> a la carpeta web y eliminamos el <code>index.html</code> de bienvenida, que Apache prioriza.</p>
+<figure class="cap"><img src="capturas/06-web.png" alt=""><div class="falta">Pegar captura: el sitio abierto en el navegador de la PC física (http://IP-DE-LA-VM)<b>capturas/06-web.png</b></div><figcaption>Captura 6. Sitio web accedido desde la máquina física.</figcaption></figure>
+
+<h2>3.4 MariaDB</h2>
+<pre>apt install -y mariadb-server
+mysql &lt; /root/db.sql              <span class="c"># redirección de entrada: mysql lee el script</span>
+mysql -e "SHOW DATABASES;"        <span class="c"># verificar la base creada</span></pre>
+<figure class="cap"><img src="capturas/07-mariadb.png" alt=""><div class="falta">Pegar captura: <i>SHOW DATABASES</i> con la base del script<b>capturas/07-mariadb.png</b></div><figcaption>Captura 7. Base de datos cargada desde db.sql.</figcaption></figure>
+</div>
+
+<!-- ============================== 4. RED ============================== -->
+<div class="seccion">
+<h1>4. Configuración de red</h1>
+<p>Con <code>ipconfig</code> en la máquina física identificamos el rango de red, la máscara y la puerta de enlace, y elegimos para la VM una IP libre del mismo rango. Configuramos la interfaz como estática en <code>/etc/network/interfaces</code>:</p>
+<pre>allow-hotplug enp0s3
+iface enp0s3 inet static        <span class="c"># IP fija (antes: dhcp)</span>
+    address 192.168.0.150       <span class="c"># ADDRESS: IP de la VM</span>
+    netmask 255.255.255.0       <span class="c"># NETMASK: máscara de la red</span>
+    gateway 192.168.0.1         <span class="c"># GATEWAY: router de salida a Internet</span></pre>
+<div class="nota">Reemplazar por los valores reales de la red donde se hizo el TP.</div>
+<p>Agregamos los servidores DNS en <code>/etc/resolv.conf</code> y aplicamos con <code>systemctl restart networking</code>. Verificamos con <code>ip a</code>, <code>ip route</code> y <code>ping</code> al router, a Internet y desde la máquina física.</p>
+<figure class="cap"><img src="capturas/08-interfaces.png" alt=""><div class="falta">Pegar captura: <i>cat /etc/network/interfaces</i><b>capturas/08-interfaces.png</b></div><figcaption>Captura 8. Archivo de configuración de red.</figcaption></figure>
+<figure class="cap"><img src="capturas/09-ping.png" alt=""><div class="falta">Pegar captura: <i>ip a</i> con la IP fija y <i>ping</i> desde la PC física a la VM<b>capturas/09-ping.png</b></div><figcaption>Captura 9. Conectividad con la IP estática.</figcaption></figure>
+</div>
+
+<!-- ============================== 5. ALMACENAMIENTO ============================== -->
+<div class="seccion">
+<h1>5. Almacenamiento</h1>
+<h2>Disco y particiones</h2>
+<p>Agregamos en VirtualBox un disco VDI de 10 GB, que Linux reconoce como <code>/dev/sdb</code>. Con <code>fdisk</code> creamos dos particiones primarias de tipo <b>83 (Linux)</b> y les dimos formato ext4.</p>
+<table>
+  <tr><th>Partición</th><th>Tamaño</th><th>Tipo</th><th>Sistema de archivos</th><th>Punto de montaje</th></tr>
+  <tr><td><code>/dev/sdb1</code></td><td>3 GB</td><td>83 Linux</td><td>ext4</td><td><code>/www_dir</code></td></tr>
+  <tr><td><code>/dev/sdb2</code></td><td>6 GB</td><td>83 Linux</td><td>ext4</td><td><code>/backup_dir</code></td></tr>
+</table>
+<pre>fdisk /dev/sdb            <span class="c"># n, p, 1, Enter, +3G · n, p, 2, Enter, +6G · p (ver) · w (guardar)</span>
+mkfs.ext4 /dev/sdb1       <span class="c"># formato ext4</span>
+mkfs.ext4 /dev/sdb2
+mkdir /www_dir /backup_dir</pre>
+<figure class="cap"><img src="capturas/10-disco.png" alt=""><div class="falta">Pegar captura: el disco de 10 GB en Configuración → Almacenamiento de VirtualBox<b>capturas/10-disco.png</b></div><figcaption>Captura 10. Disco adicional en VirtualBox.</figcaption></figure>
+<figure class="cap"><img src="capturas/11-fdisk.png" alt=""><div class="falta">Pegar captura: <i>fdisk</i> con la opción <i>p</i> mostrando Id 83<b>capturas/11-fdisk.png</b></div><figcaption>Captura 11. Particiones tipo 83.</figcaption></figure>
+
+<h2>Montaje automático</h2>
+<p>Declaramos ambas particiones en <code>/etc/fstab</code> usando su <b>UUID</b> (obtenido con <code>blkid</code>), que no cambia aunque se agreguen o reordenen discos. Probamos con <code>mount -a</code> antes de reiniciar.</p>
+<pre>UUID=&lt;uuid-sdb1&gt;  /www_dir     ext4  defaults  0  2
+UUID=&lt;uuid-sdb2&gt;  /backup_dir  ext4  defaults  0  2</pre>
+<figure class="cap"><img src="capturas/12-fstab.png" alt=""><div class="falta">Pegar captura: las líneas de <i>/etc/fstab</i> y <i>df -h</i> después de reiniciar<b>capturas/12-fstab.png</b></div><figcaption>Captura 12. Particiones montadas automáticamente al iniciar.</figcaption></figure>
+
+<h2>Apache en /www_dir</h2>
+<p>Copiamos <code>index.php</code> y <code>logo.png</code> a <code>/www_dir</code>, cambiamos el <code>DocumentRoot</code> en <code>000-default.conf</code> y agregamos en <code>apache2.conf</code> un bloque <code>&lt;Directory /www_dir/&gt;</code> con <code>Require all granted</code>, sin el cual Apache responde 403 Forbidden.</p>
+
+<h2>Registro de particiones</h2>
+<p><code>/proc/partitions</code> pertenece a un sistema de archivos virtual que el kernel genera en memoria y se pierde al apagar; guardamos una copia persistente con una redirección:</p>
+<pre>cat /proc/partitions &gt; /opt/particion</pre>
+<figure class="cap"><img src="capturas/13-particion.png" alt=""><div class="falta">Pegar captura: <i>cat /opt/particion</i> mostrando sdb1 y sdb2<b>capturas/13-particion.png</b></div><figcaption>Captura 13. Copia de /proc/partitions en /opt/particion.</figcaption></figure>
+</div>
+
+<!-- ============================== 6. BACKUP ============================== -->
+<div class="seccion">
+<h1>6. Backup automático</h1>
+<p>Desarrollamos <code>/opt/scripts/backup_full.sh</code> (permisos 750). El código completo y comentado está en <code>scripts/backup_full.sh</code> del repositorio.</p>
+<table>
+  <tr><th style="width:36%">Requisito</th><th>Solución</th></tr>
+  <tr><td>Nombre con fecha AAAAMMDD</td><td><code>date +%Y%m%d</code> → <code>&lt;carpeta&gt;_bkp_&lt;fecha&gt;.tar.gz</code> (ej.: <code>log_bkp_20241102.tar.gz</code>)</td></tr>
+  <tr><td>Guardar en /backup_dir</td><td>Es el destino que recibe el script; cron siempre usa <code>/backup_dir</code></td></tr>
+  <tr><td>Argumentos origen y destino</td><td><code>$1</code> y <code>$2</code>; si no son exactamente dos, muestra un error y sale con código 1</td></tr>
+  <tr><td>Opción de ayuda</td><td><code>-help</code> (también <code>-h</code> y <code>--help</code>)</td></tr>
+  <tr><td>Validar los sistemas de archivos</td><td>Que la carpeta exista, que <code>df</code> pueda leer su sistema de archivos y, si figura en <code>/etc/fstab</code>, que esté montada (<code>mountpoint -q</code>)</td></tr>
+  <tr><td>Compresión</td><td><code>tar -czpf</code> con <code>-C</code>, para guardar rutas relativas y conservar permisos</td></tr>
+</table>
+<p>La validación de montaje evita un error silencioso: si la partición de <code>/backup_dir</code> no está montada, la carpeta existe igual sobre el disco del sistema y el backup se guardaría en el lugar equivocado.</p>
+<figure class="cap"><img src="capturas/14-help.png" alt=""><div class="falta">Pegar captura: <i>backup_full.sh -help</i><b>capturas/14-help.png</b></div><figcaption>Captura 14. Ayuda del script.</figcaption></figure>
+<figure class="cap"><img src="capturas/15-backup.png" alt=""><div class="falta">Pegar captura: un backup exitoso, <i>ls -lh /backup_dir</i> y la validación fallando con /backup_dir desmontado<b>capturas/15-backup.png</b></div><figcaption>Captura 15. Ejecución y validación del script.</figcaption></figure>
+
+<h2>Programación con cron</h2>
+<pre>0 0 * * *      /opt/scripts/backup_full.sh /var/log /backup_dir &gt;&gt; /var/log/backup_full.log 2&gt;&amp;1
+0 23 * * 1,3,5 /opt/scripts/backup_full.sh /www_dir /backup_dir &gt;&gt; /var/log/backup_full.log 2&gt;&amp;1</pre>
+<p>La primera línea corre todos los días a las 00:00 y la segunda los lunes, miércoles y viernes a las 23:00. La salida y los errores (<code>2&gt;&amp;1</code>) se agregan a un log. La consigna menciona <code>/var/logs</code>; en Debian el directorio es <code>/var/log</code>, como confirma el ejemplo de la propia consigna (<code>log_bkp_...</code>).</p>
+<figure class="cap"><img src="capturas/16-cron.png" alt=""><div class="falta">Pegar captura: <i>crontab -l</i><b>capturas/16-cron.png</b></div><figcaption>Captura 16. Tareas programadas en cron.</figcaption></figure>
+</div>
+
+<!-- ============================== 7. ENTREGABLES ============================== -->
+<div class="seccion">
+<h1>7. Entregables</h1>
+<p>Con <code>scripts/empaquetar_entregables.sh</code> comprimimos por separado <code>/root</code>, <code>/etc</code>, <code>/opt</code>, <code>/www_dir</code> y <code>/backup_dir</code>. <code>/var</code>, el directorio más pesado, se comprimió y se cortó en partes de 45 MB con <code>split</code>, porque GitHub no acepta archivos de más de 100 MB. Los archivos se copiaron a la máquina física con <code>scp</code>, usando el mismo acceso SSH con clave, y se subieron a la carpeta <code>entregables/</code> del repositorio junto con sus huellas SHA-256.</p>
+<pre>tar -czpf - -C / var | split -b 45M -d -a 2 - var.tar.gz.part-   <span class="c"># comprimir y cortar</span>
+cat var.tar.gz.part-* &gt; var.tar.gz                               <span class="c"># volver a unir</span></pre>
+
+<h1 style="margin-top:9mm">8. Conclusión</h1>
+<p>El servidor TPServer quedó actualizado a Debian 12 y accesible de forma segura: root ingresa por SSH únicamente con su clave. El sitio del cliente funciona con Apache y PHP 8.2 sobre una base MariaDB, y responde siempre en la misma dirección gracias a la IP estática.</p>
+<p>Separar la web y los backups en particiones propias protege los datos ante problemas del disco del sistema, y el montaje por UUID asegura que el esquema se mantenga en cada arranque. El script de backup valida que los sistemas de archivos estén disponibles antes de copiar y, con cron, genera copias diarias de los logs y tres copias semanales del sitio sin intervención manual.</p>
+<p>Además del resultado, el trabajo nos permitió integrar en un caso concreto los temas de la materia: el arranque y la administración de usuarios, el gestor de paquetes, los permisos, las redirecciones, el sistema de archivos y la automatización de tareas.</p>
+
+<h1 style="margin-top:9mm">9. Bibliografía</h1>
+<ul>
+  <li>Universidad de Palermo. Apuntes de Computación Aplicada: comandos, el estándar FHS, redirecciones y pipes, gestor de paquetes, administración de usuarios, permisos y editores de texto.</li>
+  <li>Niklas, P. (2020). <i>GNU/Linux, con sabor a Debian</i>. 1.ª edición.</li>
+  <li>Debian. <i>Release Notes for Debian 12 (bookworm): Upgrades from Debian 11</i>. https://www.debian.org/releases/bookworm/amd64/release-notes/ch-upgrading.html</li>
+  <li>Debian Wiki. <i>SSH</i>. https://wiki.debian.org/SSH</li>
+  <li>Debian Wiki. <i>fstab</i>. https://wiki.debian.org/fstab</li>
+  <li>The Apache Software Foundation. <i>Apache HTTP Server 2.4 — core: DocumentRoot, Directory</i>. https://httpd.apache.org/docs/2.4/mod/core.html</li>
+</ul>
+</div>
+
+<script>
+  // Cuando una captura existe y carga bien, se oculta su recuadro rosa.
+  // Si la imagen no existe, se borra el <img> roto y queda el recuadro.
+  document.querySelectorAll('figure.cap img').forEach(function (img) {
+    function listo() { img.closest('figure').classList.add('ok'); }
+    function falta() { img.remove(); }
+    if (img.complete) { (img.naturalWidth > 0) ? listo() : falta(); }
+    img.addEventListener('load', listo);
+    img.addEventListener('error', falta);
+  });
+</script>
+</body>
+</html>
