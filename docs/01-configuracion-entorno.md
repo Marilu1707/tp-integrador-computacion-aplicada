@@ -13,7 +13,7 @@ La VM viene partida en varios `.rar` (`.part1.rar`, `.part2.rar`, ...). Son **un
 2. Clic derecho sobre la **primera** parte (`...part1.rar`) → *Extraer aquí* con WinRAR. WinRAR busca solo las demás partes y arma el archivo completo (normalmente un `.ova`).
 3. En VirtualBox: **Archivo → Importar servicio virtualizado** → elegir el `.ova` → *Importar*.
 
-> 💡 Si falta una parte o una está corrupta, WinRAR avisa con error de CRC. Hay que volver a bajar esa parte.
+> **Nota:** Si falta una parte o una está corrupta, WinRAR avisa con error de CRC. Hay que volver a bajar esa parte.
 
 ### Antes de prender la VM: poner la red en "Adaptador puente"
 
@@ -49,7 +49,7 @@ No sabemos la clave de root. GRUB (el gestor de arranque) nos deja cambiar cómo
    exec /sbin/init         # reemplaza el bash por el arranque normal de Debian
    ```
 
-> ⚠️ Si `passwd` da *"Authentication token manipulation error"*, el disco quedó en solo lectura. Ejecutar `mount -o remount,rw /` y repetir `passwd`.
+> **Importante:** Si `passwd` da *"Authentication token manipulation error"*, el disco quedó en solo lectura. Ejecutar `mount -o remount,rw /` y repetir `passwd`.
 
 ### Verificar
 
@@ -86,4 +86,4 @@ El prompt cambia a `root@TPServer` al volver a iniciar sesión (`exit` y entrar 
 
 ---
 
-📸 **Capturas para el informe:** la línea editada en GRUB · el `passwd` exitoso · el resultado de `hostname`.
+**Capturas para el informe:** la línea editada en GRUB · el `passwd` exitoso · el resultado de `hostname`.

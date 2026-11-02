@@ -44,7 +44,7 @@ git commit -m "Entregables: directorios de la VM comprimidos y /var en partes"
 git push
 ```
 
-> ⚠️ **Repositorio privado, recomendado.** `etc.tar.gz` incluye `/etc/shadow` (los hashes de las contraseñas) y `root.tar.gz` incluye la clave privada SSH. Es una VM de práctica, pero conviene crear el repo como **Private** y agregar al profesor como colaborador (*Settings → Collaborators*). Si la cátedra pide que sea público, dejarlo público.
+> **Repositorio privado, recomendado.** `etc.tar.gz` incluye `/etc/shadow` (los hashes de las contraseñas) y `root.tar.gz` incluye la clave privada SSH. Es una VM de práctica, pero conviene crear el repo como **Private** y agregar al profesor como colaborador (*Settings → Collaborators*). Si la cátedra pide que sea público, dejarlo público.
 
 ## 6.4 README con los integrantes
 

@@ -5,7 +5,7 @@
 #  La consigna pide IP ESTÁTICA y que estén los campos ADDRESS, NETMASK y
 #  GATEWAY.
 #
-#  ⚠️ LOS NÚMEROS SON DE EJEMPLO. Cada uno tiene que poner los de SU red:
+#  IMPORTANTE: LOS NÚMEROS SON DE EJEMPLO. Cada uno tiene que poner los de SU red:
 #     - En la máquina física (Windows): abrir cmd y escribir "ipconfig".
 #       Mirar "Dirección IPv4", "Máscara de subred" y "Puerta de enlace".
 #     - La VM tiene que estar en "Adaptador puente" en VirtualBox para quedar
@@ -14,7 +14,7 @@
 #       es 192.168.0.23, usar algo alto como 192.168.0.150) y probar antes
 #       con "ping 192.168.0.150" desde la PC: si NO responde, está libre.
 #
-#  ⚠️ El nombre de la interfaz (enp0s3) puede variar: verlo con "ip a".
+#  IMPORTANTE: El nombre de la interfaz (enp0s3) puede variar: verlo con "ip a".
 # =============================================================================
 
 # Interfaz "loopback" (lo): la red interna de la propia máquina (127.0.0.1,

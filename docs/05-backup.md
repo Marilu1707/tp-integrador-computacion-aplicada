@@ -15,7 +15,7 @@ nano /opt/scripts/backup_full.sh               # pegar el contenido del script d
 chmod 750 /opt/scripts/backup_full.sh          # 7 = dueño (root) rwx · 5 = grupo r-x · 0 = otros nada
 ```
 
-> 💡 **¿Por qué 750 y no 777?** El script corre como root y comprime carpetas del sistema. Si cualquiera pudiera modificarlo (777), podría meterle comandos que root ejecutaría a medianoche.
+> **¿Por qué 750 y no 777?** El script corre como root y comprime carpetas del sistema. Si cualquiera pudiera modificarlo (777), podría meterle comandos que root ejecutaría a medianoche.
 
 ## Cómo cumple cada punto de la consigna
 
@@ -28,7 +28,7 @@ chmod 750 /opt/scripts/backup_full.sh          # 7 = dueño (root) rwx · 5 = gr
 | 5.6 Validar los sistemas de archivos | Función `fs_disponible`: que la carpeta exista, que `df` pueda leer su FS y, si está en `/etc/fstab`, que esté **montada** (`mountpoint -q`) |
 | 5.7 Calendario de tareas | Las líneas de cron de 5.3 de esta guía |
 
-> 💡 **La validación más importante:** si la partición de `/backup_dir` no se montó, la carpeta `/backup_dir` existe igual (vacía, sobre el disco del sistema). Sin la validación, el backup se guardaría en el disco equivocado sin que nadie se entere. El script lo detecta con `mountpoint` y no hace la copia.
+> **La validación más importante:** si la partición de `/backup_dir` no se montó, la carpeta `/backup_dir` existe igual (vacía, sobre el disco del sistema). Sin la validación, el backup se guardaría en el disco equivocado sin que nadie se entere. El script lo detecta con `mountpoint` y no hace la copia.
 
 ## 5.2 Probarlo a mano
 
@@ -61,7 +61,7 @@ mount -a                                           # volver a montarlo
 | 3 | Destino no disponible o sin permiso de escritura |
 | 4 | Falló `tar` (por ejemplo, disco lleno) |
 
-> 💡 Con `/var/log` a veces aparece *"Aviso: algunos archivos cambiaron durante la copia"*. Es normal: el sistema sigue escribiendo logs mientras se comprimen. `tar` igual genera el backup (devuelve 1, que el script toma como advertencia y no como error).
+> **Nota:** Con `/var/log` a veces aparece *"Aviso: algunos archivos cambiaron durante la copia"*. Es normal: el sistema sigue escribiendo logs mientras se comprimen. `tar` igual genera el backup (devuelve 1, que el script toma como advertencia y no como error).
 
 ## 5.3 Programarlo con cron
 
@@ -83,7 +83,7 @@ Pegar al final (archivo explicado: [`config/crontab-root.txt`](../config/crontab
 | 1 | 0 | 0 | * | * | * | Todos los días a las 00:00 |
 | 2 | 0 | 23 | * | * | 1,3,5 | Lunes, miércoles y viernes a las 23:00 |
 
-> ⚠️ La consigna dice `/var/logs`, pero en Debian la carpeta es **`/var/log`** (sin "s"). El propio ejemplo de la consigna (`log_bkp_...`) lo confirma.
+> **Importante:** La consigna dice `/var/logs`, pero en Debian la carpeta es **`/var/log`** (sin "s"). El propio ejemplo de la consigna (`log_bkp_...`) lo confirma.
 
 ```bash
 crontab -l                  # muestra las tareas cargadas
@@ -101,4 +101,4 @@ tar -xzpf /backup_dir/www_dir_bkp_20241102.tar.gz -C /tmp/restaurado
 
 ---
 
-📸 **Capturas para el informe:** `-help` · un backup exitoso · `ls -lh /backup_dir` · la validación fallando con `/backup_dir` desmontado · `crontab -l`.
+**Capturas para el informe:** `-help` · un backup exitoso · `ls -lh /backup_dir` · la validación fallando con `/backup_dir` desmontado · `crontab -l`.

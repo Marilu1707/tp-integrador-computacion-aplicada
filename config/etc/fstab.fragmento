@@ -18,8 +18,8 @@
 #   (el que era sdb pasa a ser sdc). El UUID es propio de cada partición y no
 #   cambia nunca. Se obtiene con:   blkid /dev/sdb1 /dev/sdb2
 #
-#  ⚠️ Reemplazar los UUID de ejemplo por los que muestre blkid en SU VM.
-#  ⚠️ Probar SIEMPRE con "mount -a" antes de reiniciar: si fstab tiene un
+#  IMPORTANTE: Reemplazar los UUID de ejemplo por los que muestre blkid en SU VM.
+#  IMPORTANTE: Probar SIEMPRE con "mount -a" antes de reiniciar: si fstab tiene un
 #     error, la VM puede no arrancar (entra en modo de emergencia).
 # =============================================================================
 

@@ -6,7 +6,7 @@
 <!--
   CÓMO TERMINAR EL INFORME
   1) Guardar las capturas de la VM en la carpeta informe/capturas/ con los
-     nombres que figuran en cada recuadro rosa (01-grub.png, 02-passwd.png...).
+     nombres que figuran en cada recuadro gris (01-grub.png, 02-passwd.png...).
      Cada recuadro desaparece solo cuando su imagen existe.
   2) Abrir este archivo con Chrome o Edge → Ctrl+P → Destino: "Guardar como PDF"
      → Más opciones: activar "Gráficos de fondo" → Guardar como informe.pdf
@@ -14,35 +14,35 @@
 <style>
 @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
 :root{
-  --rosa:#c2185b; --rosa2:#e75480; --rosa-claro:#fde4ee; --rosa-fondo:#fff6fa;
-  --tinta:#2b2230; --gris:#6e6470; --linea:#f2c6d8;
+  --acento:#1f2e4d; --acento2:#1f2e4d; --acento-claro:#eceef1; --acento-fondo:#f6f7f9;
+  --tinta:#1f2328; --gris:#6b7280; --linea:#d0d4da;
 }
 *{box-sizing:border-box}
 body{font-family:"DejaVu Sans","Segoe UI",Arial,sans-serif;color:var(--tinta);font-size:10pt;line-height:1.5;margin:0;
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
-h1{font-size:15pt;color:var(--rosa);border-bottom:2px solid var(--rosa2);padding-bottom:1.5mm;margin:0 0 3.5mm;break-after:avoid}
-h2{font-size:11.5pt;color:var(--rosa);margin:5mm 0 1.5mm;break-after:avoid}
+h1{font-size:15pt;color:var(--acento);border-bottom:2px solid var(--acento2);padding-bottom:1.5mm;margin:0 0 3.5mm;break-after:avoid}
+h2{font-size:11.5pt;color:var(--acento);margin:5mm 0 1.5mm;break-after:avoid}
 p{margin:1.5mm 0}
 ul,ol{margin:1mm 0 2mm;padding-left:5.5mm}
 li{margin:.6mm 0}
-code{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.8pt;background:var(--rosa-claro);padding:0 1mm;border-radius:2px}
-pre{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.6pt;background:var(--rosa-fondo);border-left:3px solid var(--rosa2);
+code{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.8pt;background:var(--acento-claro);padding:0 1mm;border-radius:2px}
+pre{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.6pt;background:var(--acento-fondo);border-left:3px solid var(--acento2);
   padding:2.5mm 3.5mm;margin:2mm 0;white-space:pre-wrap;break-inside:avoid;line-height:1.45}
-pre .c{color:#a0587a}
+pre .c{color:#6e7787}
 table{border-collapse:collapse;width:100%;margin:2mm 0 3mm;font-size:9pt}
-th{background:var(--rosa);color:#fff;text-align:left;padding:1.4mm 2mm;font-weight:600}
+th{background:var(--acento);color:#fff;text-align:left;padding:1.4mm 2mm;font-weight:600}
 td{border-bottom:1px solid var(--linea);padding:1.2mm 2mm;vertical-align:top}
 tr{break-inside:avoid}
 .seccion{break-before:page}
-.nota{background:var(--rosa-fondo);border:1px solid var(--linea);border-radius:4px;padding:2.2mm 3.2mm;margin:2.5mm 0;break-inside:avoid;font-size:9.4pt}
+.nota{background:var(--acento-fondo);border:1px solid var(--linea);border-radius:4px;padding:2.2mm 3.2mm;margin:2.5mm 0;break-inside:avoid;font-size:9.4pt}
 
 /* Portada */
 .portada{height:257mm;display:flex;flex-direction:column;justify-content:space-between;
-  background:linear-gradient(160deg,#fff 0%,#fff 55%,var(--rosa-claro) 100%);border-left:8px solid var(--rosa2);padding:16mm 12mm 12mm}
+  background:linear-gradient(160deg,#fff 0%,#fff 55%,var(--acento-claro) 100%);border-left:8px solid var(--acento2);padding:16mm 12mm 12mm}
 .portada .uni{color:var(--gris);font-size:10pt;letter-spacing:.3px}
-.portada .tit{font-size:26pt;line-height:1.15;color:var(--rosa);font-weight:700;margin:0}
+.portada .tit{font-size:26pt;line-height:1.15;color:var(--acento);font-weight:700;margin:0}
 .portada .sub{font-size:13pt;color:var(--tinta);margin-top:3mm}
-.portada .marca{display:inline-block;margin-top:7mm;background:var(--rosa);color:#fff;border-radius:20px;padding:1.5mm 5mm;font-size:10.5pt;font-weight:600}
+.portada .marca{display:inline-block;margin-top:7mm;background:var(--acento);color:#fff;border-radius:20px;padding:1.5mm 5mm;font-size:10.5pt;font-weight:600}
 .portada table{width:auto;font-size:10pt}
 .portada td{border:none;padding:.7mm 4mm .7mm 0}
 .portada .lbl{color:var(--gris)}
@@ -51,10 +51,10 @@ tr{break-inside:avoid}
 .indice li{display:flex;justify-content:space-between;border-bottom:1px dotted var(--linea);padding:1mm 0;list-style:none}
 .indice{padding-left:0}
 
-/* Capturas: el recuadro rosa se ve mientras falta la imagen */
+/* Capturas: el recuadro gris se ve mientras falta la imagen */
 figure.cap{margin:2.5mm 0 3.5mm;break-inside:avoid}
 figure.cap img{max-width:100%;max-height:95mm;display:block;margin:0 auto;border:1px solid var(--linea);border-radius:3px}
-figure.cap .falta{border:2px dashed var(--rosa2);background:var(--rosa-fondo);border-radius:5px;padding:5mm;text-align:center;color:var(--rosa);font-size:9pt}
+figure.cap .falta{border:2px dashed #c9ced6;background:var(--acento-fondo);border-radius:5px;padding:5mm;text-align:center;color:var(--acento);font-size:9pt}
 figure.cap .falta b{display:block;font-family:"DejaVu Sans Mono",monospace;font-size:9pt;margin-top:1mm}
 figure.cap.ok .falta{display:none}
 figure.cap figcaption{text-align:center;color:var(--gris);font-size:8.6pt;margin-top:1.2mm}
@@ -68,7 +68,7 @@ figure.cap figcaption{text-align:center;color:var(--gris);font-size:8.6pt;margin
     <div class="uni">Universidad de Palermo · Facultad de Ingeniería</div>
     <p class="tit">Trabajo Práctico Integrador</p>
     <div class="sub">Computación Aplicada — Servidor Debian 12 con web, base de datos y backups automáticos</div>
-    <div class="marca">🌸 Palermo Cloud</div>
+    <div class="marca">Palermo Cloud</div>
   </div>
   <table>
     <tr><td class="lbl">Integrantes</td><td>Maria FALOMO</td></tr>
@@ -262,7 +262,7 @@ cat var.tar.gz.part-* &gt; var.tar.gz                               <span class=
 </div>
 
 <script>
-  // Cuando una captura existe y carga bien, se oculta su recuadro rosa.
+  // Cuando una captura existe y carga bien, se oculta su recuadro gris.
   // Si la imagen no existe, se borra el <img> roto y queda el recuadro.
   document.querySelectorAll('figure.cap img').forEach(function (img) {
     function listo() { img.closest('figure').classList.add('ok'); }

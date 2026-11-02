@@ -46,8 +46,8 @@ Después:
 | `p` | **Mostrar** la tabla: las dos particiones tienen que decir **Id 83, Type Linux** |
 | `w` | **Escribir** los cambios en el disco y salir (hasta acá nada se guardó) |
 
-> 💡 Las particiones nuevas ya se crean con tipo 83 por defecto. Si alguna dijera otro tipo: `t` → número de partición → `83`.
-> 💡 Si `fdisk` dice *"Created a new DOS disklabel"*, está bien: el disco estaba vacío y le creó la tabla de particiones MBR.
+> **Nota:** Las particiones nuevas ya se crean con tipo 83 por defecto. Si alguna dijera otro tipo: `t` → número de partición → `83`.
+> **Nota:** Si `fdisk` dice *"Created a new DOS disklabel"*, está bien: el disco estaba vacío y le creó la tabla de particiones MBR.
 
 ```bash
 lsblk       # ahora: sdb1 (3G) y sdb2 (6G)
@@ -80,7 +80,7 @@ chmod 755 /www_dir                            # Apache (usuario www-data) tiene 
 chmod 644 /www_dir/index.php /www_dir/logo.png  # y LEER los archivos
 ```
 
-> 💡 En `/www_dir` también aparece `lost+found`: lo crea `mkfs.ext4` para recuperar archivos si el disco se daña. Es normal, no se borra.
+> **Nota:** En `/www_dir` también aparece `lost+found`: lo crea `mkfs.ext4` para recuperar archivos si el disco se daña. Es normal, no se borra.
 
 ### Apuntar Apache a la nueva carpeta (dos archivos)
 
@@ -111,8 +111,8 @@ systemctl reload apache2     # aplica sin cortar el servicio
 
 Probar desde la PC: `http://IP-DE-LA-VM` → la página se sigue viendo igual, pero ahora sale de `/www_dir`.
 
-> ⚠️ **403 Forbidden** → falta el bloque `<Directory /www_dir/>` en `apache2.conf`, o los permisos de 4.3.
-> ⚠️ **Página por defecto de Apache** → el `DocumentRoot` sigue apuntando a `/var/www/html`.
+> **403 Forbidden** → falta el bloque `<Directory /www_dir/>` en `apache2.conf`, o los permisos de 4.3.
+> **Página por defecto de Apache** → el `DocumentRoot` sigue apuntando a `/var/www/html`.
 
 ---
 
@@ -161,4 +161,4 @@ cat /opt/particion                       # tiene que listar sda, sda1..., sdb, s
 
 ---
 
-📸 **Capturas para el informe:** el disco en VirtualBox · `fdisk` con `p` (Id 83) · `lsblk -f` · las líneas de fstab · `df -h` después de reiniciar · `cat /opt/particion`.
+**Capturas para el informe:** el disco en VirtualBox · `fdisk` con `p` (Id 83) · `lsblk -f` · las líneas de fstab · `df -h` después de reiniciar · `cat /opt/particion`.

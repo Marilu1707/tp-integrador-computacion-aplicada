@@ -3,7 +3,7 @@
 > **Consigna 2:** actualizar a Debian 12, configurar SSH para root con clave pública/privada, Apache con PHP sirviendo `index.php` y `logo.png`, y MariaDB con el script `db.sql`.
 > **Escenario Palermo Cloud:** dejamos el servidor del cliente actualizado y con todo lo necesario para alojar su web y su base de datos.
 
-> 💡 **Orden recomendado:** hacer la actualización (2.1) **antes** de configurar la IP estática (consigna 3), mientras la VM todavía tiene Internet por DHCP. Si algo de red falla, no nos quedamos sin poder descargar paquetes.
+> **Orden recomendado:** hacer la actualización (2.1) **antes** de configurar la IP estática (consigna 3), mientras la VM todavía tiene Internet por DHCP. Si algo de red falla, no nos quedamos sin poder descargar paquetes.
 
 ---
 
@@ -15,7 +15,7 @@
 cat /etc/debian_version     # muestra el número: 10.x = Buster, 11.x = Bullseye, 12.x = Bookworm
 ```
 
-> ⚠️ **Debian no se puede saltear versiones.** Si la VM es Debian 10, hay que hacer el proceso **dos veces**: 10 → 11 (bullseye) y después 11 → 12 (bookworm). Si es Debian 11, una sola vez.
+> **Debian no se puede saltear versiones.** Si la VM es Debian 10, hay que hacer el proceso **dos veces**: 10 → 11 (bullseye) y después 11 → 12 (bookworm). Si es Debian 11, una sola vez.
 
 ### Paso a paso (se repite por cada salto de versión)
 
@@ -34,7 +34,7 @@ nano /etc/apt/sources.list
 
 En el editor, reemplazar el nombre de la versión vieja por la nueva en **todas** las líneas. El archivo final para Debian 12 está en [`config/etc/apt/sources.list`](../config/etc/apt/sources.list), con cada línea explicada.
 
-> ⚠️ Si venimos de **Debian 10**: la línea de seguridad tiene otro formato (`buster/updates`). En Debian 11 pasa a ser `http://security.debian.org/debian-security bullseye-security main`.
+> **Importante:** Si venimos de **Debian 10**: la línea de seguridad tiene otro formato (`buster/updates`). En Debian 11 pasa a ser `http://security.debian.org/debian-security bullseye-security main`.
 
 ```bash
 # 4) Hacer el salto
@@ -88,7 +88,7 @@ cat /root/id_rsa.pub >> /root/.ssh/authorized_keys   # agrega la clave PÚBLICA 
 chmod 600 /root/.ssh/authorized_keys                 # solo root puede leer y escribir el archivo
 ```
 
-> 💡 **¿Por qué tan estrictos con los permisos?** Si otro usuario pudiera escribir en `authorized_keys`, podría agregar su propia clave y entrar como root. Por eso `sshd` directamente **ignora** el archivo si los permisos son más abiertos que `700` / `600`.
+> **¿Por qué tan estrictos con los permisos?** Si otro usuario pudiera escribir en `authorized_keys`, podría agregar su propia clave y entrar como root. Por eso `sshd` directamente **ignora** el archivo si los permisos son más abiertos que `700` / `600`.
 
 ### Configurar el servidor
 
@@ -115,7 +115,7 @@ sshd -T | grep -i -E "permitrootlogin|pubkey"   # muestra los valores activos
    ```
 3. La primera vez pregunta si confiamos en el servidor (*fingerprint*): escribir `yes`.
 
-> ⚠️ Si dice *"UNPROTECTED PRIVATE KEY FILE"*, la clave tiene permisos muy abiertos en la PC. En Linux/Mac: `chmod 600 id_rsa_tp`. En Windows: Propiedades → Seguridad → dejar solo a tu usuario.
+> **Importante:** Si dice *"UNPROTECTED PRIVATE KEY FILE"*, la clave tiene permisos muy abiertos en la PC. En Linux/Mac: `chmod 600 id_rsa_tp`. En Windows: Propiedades → Seguridad → dejar solo a tu usuario.
 
 ---
 
@@ -141,7 +141,7 @@ cp /root/index.php /root/logo.png /var/www/html/   # copiar los archivos del hom
 rm /var/www/html/index.html                        # borrar la página de bienvenida de Apache
 ```
 
-> 💡 **¿Por qué borrar `index.html`?** Apache busca primero `index.html` y después `index.php`. Si no lo borramos, sigue apareciendo la página "Apache2 Debian Default Page" en lugar de nuestro sitio.
+> **¿Por qué borrar `index.html`?** Apache busca primero `index.html` y después `index.php`. Si no lo borramos, sigue apareciendo la página "Apache2 Debian Default Page" en lugar de nuestro sitio.
 
 ### Verificar
 
@@ -167,7 +167,7 @@ mysql < /root/db.sql             # ejecuta TODO el script como root de MariaDB
                                  # "<" = redirección de ENTRADA: mysql lee los comandos desde el archivo
 ```
 
-> ⚠️ Si el script **no** tiene `CREATE DATABASE`, hay que crear la base primero e indicarla:
+> **Importante:** Si el script **no** tiene `CREATE DATABASE`, hay que crear la base primero e indicarla:
 > ```bash
 > mysql -e "CREATE DATABASE nombre_base;"     # -e = ejecutar este comando SQL
 > mysql nombre_base < /root/db.sql
@@ -185,4 +185,4 @@ Y en el navegador: la página de `index.php` tiene que mostrar los datos de la b
 
 ---
 
-📸 **Capturas para el informe:** `lsb_release -a` en 12 · `ssh -i` exitoso desde la PC · el sitio en el navegador de la PC · `SHOW DATABASES`.
+**Capturas para el informe:** `lsb_release -a` en 12 · `ssh -i` exitoso desde la PC · el sitio en el navegador de la PC · `SHOW DATABASES`.

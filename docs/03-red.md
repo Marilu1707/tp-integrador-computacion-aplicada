@@ -21,7 +21,7 @@ En Windows, abrir CMD y ejecutar `ipconfig`. Anotar del adaptador que tiene Inte
 
 Elegir para la VM una IP **libre** del mismo rango, por ejemplo `192.168.0.150`. Para comprobar que nadie la usa: `ping 192.168.0.150` desde la PC. Si **no** responde, está libre.
 
-> ⚠️ La VM tiene que estar en **Adaptador puente** (ver [doc 1](01-configuracion-entorno.md)). Con NAT nunca va a estar en el rango de la PC.
+> **Importante:** La VM tiene que estar en **Adaptador puente** (ver [doc 1](01-configuracion-entorno.md)). Con NAT nunca va a estar en el rango de la PC.
 
 ## Paso 2: ver el nombre de la interfaz (en la VM)
 
@@ -72,9 +72,9 @@ ping -c 3 deb.debian.org         # resuelve nombres (DNS)
 
 Y desde la PC física: `ping 192.168.0.150` tiene que responder.
 
-> 💡 Si `restart networking` no toma el cambio, reiniciar la VM (`reboot`) o hacer `ifdown enp0s3 && ifup enp0s3`.
-> ⚠️ Si estamos conectados por SSH al cambiar la IP, la sesión se corta: hay que reconectar a la IP nueva.
+> **Nota:** Si `restart networking` no toma el cambio, reiniciar la VM (`reboot`) o hacer `ifdown enp0s3 && ifup enp0s3`.
+> **Importante:** Si estamos conectados por SSH al cambiar la IP, la sesión se corta: hay que reconectar a la IP nueva.
 
 ---
 
-📸 **Capturas para el informe:** `cat /etc/network/interfaces` · `ip a` con la IP nueva · `ping` desde la PC a la VM.
+**Capturas para el informe:** `cat /etc/network/interfaces` · `ip a` con la IP nueva · `ping` desde la PC a la VM.

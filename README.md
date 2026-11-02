@@ -1,14 +1,14 @@
 # TP Integrador — Computación Aplicada
 
-![Debian 12](https://img.shields.io/badge/Debian-12%20Bookworm-e75480)
-![Apache + PHP](https://img.shields.io/badge/Apache-PHP%208.2-ff69b4)
-![MariaDB](https://img.shields.io/badge/MariaDB-db.sql-f4a6c1)
-![Backup](https://img.shields.io/badge/backup-cron-c71585)
+![Debian 12](https://img.shields.io/badge/Debian-12%20Bookworm-1f2e4d)
+![Apache + PHP](https://img.shields.io/badge/Apache-PHP%208.2-374151)
+![MariaDB](https://img.shields.io/badge/MariaDB-db.sql-4b5563)
+![Backup](https://img.shields.io/badge/backup-cron-6b7280)
 
 **Universidad de Palermo · Facultad de Ingeniería · Computación Aplicada**
 Profesor: Matías Chiesa
 
-## Palermo Cloud 🌸
+## Palermo Cloud
 
 Somos **Palermo Cloud**, una empresa (ficticia) de hosting. Un cliente nos entrega su servidor Debian **sin la clave de administrador** y nos pide dejarlo listo para producción:
 
@@ -45,7 +45,7 @@ Seguir en este orden. Cada guía arranca con lo que pide la consigna y termina c
 | 5 | [Backup](docs/05-backup.md) | `backup_full.sh` + cron |
 | 6 | [Entregables](docs/06-entregables.md) | Comprimir directorios, cortar `/var`, subir a GitHub |
 
-> 💡 Orden recomendado en la práctica: 1 → 2.1 (actualizar mientras hay Internet por DHCP) → 3 → resto de 2 → 4 → 5 → 6.
+> **Nota:** Orden recomendado en la práctica: 1 → 2.1 (actualizar mientras hay Internet por DHCP) → 3 → resto de 2 → 4 → 5 → 6.
 
 ## Qué hay en el repositorio
 
