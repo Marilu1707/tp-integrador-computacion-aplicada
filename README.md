@@ -26,11 +26,11 @@ Ese es exactamente el TP integrador: este repositorio documenta cómo lo resolvi
 
 | # | Nombre y apellido | Usuario de GitHub |
 |---|---|---|
-| 1 | María Luján Massironi | [@Marilu1707](https://github.com/Marilu1707) |
-| 2 | _(completar)_ | _(completar)_ |
-| 3 | _(completar)_ | _(completar)_ |
-| 4 | _(completar)_ | _(completar)_ |
-| 5 | _(completar)_ | _(completar)_ |
+| 1 | Maria FALOMO | _(completar)_ |
+| 2 | María Luján MASSIRONI | [@Marilu1707](https://github.com/Marilu1707) |
+| 3 | Tiago Máximo Valentín ROMERO | _(completar)_ |
+| 4 | Luca TESSONE | _(completar)_ |
+| 5 | Mateo VEIGA | _(completar)_ |
 
 ## Guía paso a paso
 
