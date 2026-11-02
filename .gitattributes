@@ -1,0 +1,6 @@
+# Los scripts y configuraciones usan saltos de línea de Linux (LF).
+# Si alguien edita desde Windows, git no los convierte a CRLF: un script con
+# CRLF falla en bash con errores tipo "$'\r': command not found".
+*.sh   text eol=lf
+*.conf text eol=lf
+config/** text eol=lf
